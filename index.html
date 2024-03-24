@@ -5,8 +5,72 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
     <style>
-        /* Your existing styles remain unchanged */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .draggable, .resizable, .selectable-item, .accordion-section, .date-picker, .slider, .color-animation, #droppable, #show-hide, #explode, #fade, #color-animation {
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .draggable, .resizable, .selectable-item, #droppable {
+            border: 1px solid #ccc;
+        }
+        .droppable {
+            width: 150px;
+            height: 150px;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 150px;
+            text-align: center;
+        }
+        .resizable {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+        }
+        .selectable-item {
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+        #selectable .ui-selecting {
+            background: #FECA40;
+        }
+        #selectable .ui-selected {
+            background: #F39814;
+            color: white;
+        }
+        #accordion .ui-accordion-header {
+            background-color: #e9ecef;
+            border: 1px solid #ddd;
+        }
+        #accordion .ui-accordion-content {
+            border: 1px solid #ddd;
+        }
+        #autocomplete {
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        #date-picker {
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        .slider {
+            margin-top: 20px;
+        }
+        #show-hide, #explode, #fade, #color-animation {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            cursor: pointer;
+            text-align: center;
+        }
+        .color-animation {
+            background-color: #d1ecf1;
+            transition: background-color 1s ease;
+        }
     </style>
 </head>
 <body>
@@ -40,57 +104,16 @@
         $("#draggable").draggable();
         $("#droppable").droppable({
             drop: function(event, ui) {
-                $(this).addClass("ui-state-highlight").find("p").html("Dropped!");
+                $(this).addClass("ui-state-highlight").html("Dropped!");
             }
         });
         $("#resizable").resizable();
         $("#selectable").selectable();
         $("#accordion").accordion();
 
-        // Complete the autocomplete initialization
         var availableTags = [
-            "ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", 
-            "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", 
-            "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", 
-            "Scala", "Scheme"
-        ];
-        $("#autocomplete").autocomplete({
-            source: availableTags
-        });
-
-        // Date Picker initialization
-        $("#date-picker").datepicker();
-
-        // Slider initialization
-        $("#slider").slider();
-
-        // Show & Hide, Explode, Fade, and Color Animation interactions
-        $("#show-hide").on("click", function() {
-            $(this).hide(1000, function() {
-                $(this).show(1000);
-            });
-        });
-
-        $("#explode").on("click", function() {
-            $(this).hide("explode", { pieces: 16 }, 2000, function() {
-                $(this).show("explode", { pieces: 16 }, 2000);
-            });
-        });
-
-        $("#fade").on("click", function() {
-            $(this).fadeOut(1000, function() {
-                $(this).fadeIn(1000);
-            });
-        });
-
-        $("#color-animation").on("click", function() {
-            $(this).animate({
-                backgroundColor: "#abcdef"
-            }, 1000, function() {
-                // Animation complete. Can add callback code here if needed.
-            });
-        });
-    });
-</script>
-</body>
-</html>
+            "ActionScript", "AppleScript", "Asp", 
+            "BASIC", "C", "C++", "Clojure", "COBOL", 
+            "ColdFusion", "Erlang", "Fortran", "Groovy", 
+            "Haskell", "Java", "JavaScript", "Lisp", 
+            "Perl", "PHP", "Python",
